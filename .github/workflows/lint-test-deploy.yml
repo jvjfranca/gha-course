@@ -1,0 +1,16 @@
+# run lint test build
+name: CI Workflow
+on: push
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            -
+                name: Checkout Code
+                uses: actions/checkout@v3
+            -
+                name: Github Workspace
+                run: echo "${{ github.workspace }}""
+            -
+                name: lint
+                run: "eslint --ext .jsx --fix src"
