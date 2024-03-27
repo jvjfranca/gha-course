@@ -14,12 +14,32 @@ jobs:
             -
                 name: lint
                 run: npm run lint
+    test:
+        needs: lint
+        runs-on: ubuntu-latest
+        steps:
             -
-                name: test
+                name: Checkout Code
+                uses: actions/checkout@v3
+            -
+                name: Install dependencies
+                run: npm ci
+            -
+                name: Unit Testing
                 run: npm run test
+    build:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
             -
-                name: build
+                name: Checkout Code
+                uses: actions/checkout@v3
+            -
+                name: Install dependencies
+                run: npm ci
+            -
+                name: Build
                 run: npm run build
             -
-                name: deploy
+                name: Deploy
                 run: echo "Deploying....."
